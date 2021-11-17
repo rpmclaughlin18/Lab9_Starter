@@ -5,6 +5,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "25f1c1a5dc62445297f2a490263446ce"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
   <title>Lab 9</title>
 
   <style>
@@ -47,6 +55,7 @@
       width: 122px;
     }
   </style>
+  <script src="./main.js" type="module"></script>
 </head>
 
 <body>
@@ -95,7 +104,17 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+
+      try {
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      }
+      catch (err) {
+        console.error("caught your error: " + err)
+      }
+
+      if(window.onerror) {
+        console.log(window.onerror);
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
